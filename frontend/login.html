@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(
+        -45deg,
+        #1e3c72,
+        #2a5298,
+        #4b6cb7,
+        #182848
+      );
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      min-width: 300px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    button {
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h2>Login</h2>
+
+    <input id="u" placeholder="username">
+    <input id="p" placeholder="password" type="password">
+
+    <br><br>
+    <button onclick="login()">Login</button>
+  </div>
+  <script>
+    function login() {
+      fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: document.getElementById("u").value,
+          password: document.getElementById("p").value
+        })
+      })
+      .then(res => {
+        if (!res.ok) alert("Invalid login");
+        return res.json();
+      })
+      .then(data => {
+  if (data.is_admin == 1) {
+    window.location.href = "admin.html";
+  } else {
+    window.location.href = "user.html?role=" + data.role_id;
+  }
+});
+
+    }
+  </script>
+</body>
+</html>
