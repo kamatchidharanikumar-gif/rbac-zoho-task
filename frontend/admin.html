@@ -3,56 +3,47 @@
 <head>
   <title>Admin Dashboard</title>
   <style>
-  body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(-45deg, #134e5e, #71b280, #2ecc71, #11998e);
-    background-size: 400% 400%;
-    animation: adminBG 18s ease infinite;
-  }
-
-  @keyframes adminBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .card {
-    background: #ffffff;
-    padding: 35px;
-    border-radius: 10px;
-    width: 420px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  }
-</style>
-
+    body {
+      font-family: Arial;
+      background: #f4f6fb;
+      padding: 40px;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .logout {
+      margin-top: 20px;
+      color: red;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="card">
- 
 
-
-  <h2>Admin Dashboard</h2>
-
+<div class="card">
+  <h1>Admin Dashboard</h1>
   <p>You are logged in as <b>Admin</b>.</p>
 
-  <p>
-    Admin can:
-    <ul>
-      <li>Create roles</li>
-      <li>Assign table-level permissions</li>
-      <li>Assign field-level permissions</li>
-    </ul>
-  </p>
+  <ul>
+    <li>Create roles</li>
+    <li>Assign table-level permissions</li>
+    <li>Assign field-level permissions</li>
+  </ul>
 
-  <p>
-    (Permission management is config-driven and stored in database.)
-  </p>
-  <p><i>Admin permissions are configurable and stored in database.</i></p>
+  <p><i>Permissions are config-driven and stored in database.</i></p>
+
+  <div class="logout" onclick="logout()">Logout</div>
 </div>
+
+<script>
+function logout() {
+  window.location.href = "login.html";
+}
+</script>
+
 </body>
 </html>
